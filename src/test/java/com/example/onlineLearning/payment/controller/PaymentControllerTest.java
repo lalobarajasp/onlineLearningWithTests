@@ -41,9 +41,6 @@ class PaymentControllerTest {
     private Payment payment1;
     private Payment payment2;
 
-    PaymentControllerTest() throws Exception {
-    }
-
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);

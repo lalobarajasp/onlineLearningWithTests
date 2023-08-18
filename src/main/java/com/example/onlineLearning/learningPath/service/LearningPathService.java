@@ -31,13 +31,17 @@ public class LearningPathService {
         );
     }
 
-    //Update Learning Path
     public LearningPath updateLearningPath(Long id, String typePath) {
-        LearningPath tmpUser = null;
-        //Show an option to change either custom or just a course
+        LearningPath learningPath = learningPathRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("The Learning Path with id: " + id + " doesn't exist."));
 
-        return tmpUser;
+        // Update the typePath property
+        learningPath.setTypePath(typePath);
+
+        // Save the updated learningPath object
+        return learningPathRepository.save(learningPath);
     }
+
 
     //Delete a Learning Path
     public LearningPath deleteLearningPath(Long id) {
