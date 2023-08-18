@@ -1,0 +1,707 @@
+---
+openapi: 3.0.1
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  "/registration/user/{id}":
+    get:
+      tags:
+        - registration-controller
+      operationId: getOnlyRegisterController
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/AppUser"
+    put:
+      tags:
+        - registration-controller
+      operationId: updateAppUserController
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: lastName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: passwordCode
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/AppUser"
+  "/registration/user/forgotpassword/{id}":
+    put:
+      tags:
+        - registration-controller
+      operationId: forgotPasswordController
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: passwordCode
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: newPassword
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/AppUser"
+  "/registration/user/changepassword/{id}":
+    put:
+      tags:
+        - registration-controller
+      operationId: updatePasswordController
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ChangePassword"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/AppUser"
+  "/learning/path/{pathId}":
+    get:
+      tags:
+        - learning-path-controller
+      operationId: getLearningPath
+      parameters:
+        - name: pathId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/LearningPath"
+    put:
+      tags:
+        - learning-path-controller
+      operationId: updateLearning
+      parameters:
+        - name: pathId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: typePath
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/LearningPath"
+  "/course/courses/{courseId}":
+    get:
+      tags:
+        - course-controller
+      operationId: getOnlyCourseController
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Course"
+    put:
+      tags:
+        - course-controller
+      operationId: updateCourseController
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Course"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Course"
+    delete:
+      tags:
+        - course-controller
+      operationId: deleteCourseController
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Course"
+  "/registration/user":
+    post:
+      tags:
+        - registration-controller
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/RegistrationRequest"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+  "/learning/create":
+    post:
+      tags:
+        - learning-path-controller
+      operationId: save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/LearningPath"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/LearningPath"
+  "/enrollment/unenroll/{id}":
+    post:
+      tags:
+        - enrollment-controller
+      operationId: unEnrollController
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Enrollment"
+  "/enrollment/enroll":
+    post:
+      tags:
+        - enrollment-controller
+      operationId: enrollCourseController
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Enrollment"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Enrollment"
+  "/course/create":
+    post:
+      tags:
+        - course-controller
+      operationId: createController
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Course"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Course"
+  "/registration/user/all":
+    get:
+      tags:
+        - registration-controller
+      operationId: getAllRegistersController
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/AppUser"
+  "/registration/confirm":
+    get:
+      tags:
+        - registration-controller
+      operationId: confirm
+      parameters:
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+  "/quiz/track/{trackId}":
+    get:
+      tags:
+        - tracking-controller
+      operationId: getTrack
+      parameters:
+        - name: trackId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Tracking"
+  "/quiz/quizzes":
+    get:
+      tags:
+        - quiz-controller
+      operationId: AllQuizzes
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Quiz"
+  "/quiz/quiz/{quizId}":
+    get:
+      tags:
+        - quiz-controller
+      operationId: getQuiz
+      parameters:
+        - name: quizId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Quiz"
+  "/payment/payments":
+    get:
+      tags:
+        - payment-controller
+      operationId: AllPayments
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Payment"
+  "/payment/payment/{paymentId}":
+    get:
+      tags:
+        - payment-controller
+      operationId: getPayment
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Payment"
+  "/learning/paths":
+    get:
+      tags:
+        - learning-path-controller
+      operationId: AllLearningPath
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/LearningPath"
+  "/health/health/app":
+    get:
+      tags:
+        - health-controller
+      operationId: healthCheck
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+  "/course/search":
+    get:
+      tags:
+        - course-controller
+      operationId: searchCourses
+      parameters:
+        - name: search
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Course"
+  "/course/courses":
+    get:
+      tags:
+        - course-controller
+      operationId: getAllCoursesController
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Course"
+  "/registration/user/delete/{id}":
+    delete:
+      tags:
+        - registration-controller
+      operationId: deleteAppUserController
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/AppUser"
+  "/learning/learning/{learningId}":
+    delete:
+      tags:
+        - learning-path-controller
+      operationId: deleteOnlyLearningPath
+      parameters:
+        - name: learningId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/LearningPath"
+components:
+  schemas:
+    AppUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        passwordCode:
+          type: integer
+          format: int64
+        appUserRole:
+          type: string
+          enum:
+            - USER
+            - ADMIN
+        locked:
+          type: boolean
+        enabled:
+          type: boolean
+        deletedAccount:
+          type: boolean
+        username:
+          type: string
+        authorities:
+          type: array
+          items:
+            "$ref": "#/components/schemas/GrantedAuthority"
+        accountNonExpired:
+          type: boolean
+        accountNonLocked:
+          type: boolean
+        credentialsNonExpired:
+          type: boolean
+    GrantedAuthority:
+      type: object
+      properties:
+        authority:
+          type: string
+    ChangePassword:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        passwordCode:
+          type: integer
+          format: int64
+        appUserRole:
+          type: string
+          enum:
+            - USER
+            - ADMIN
+        locked:
+          type: boolean
+        enabled:
+          type: boolean
+        deletedAccount:
+          type: boolean
+        newPassword:
+          type: string
+        username:
+          type: string
+        authorities:
+          type: array
+          items:
+            "$ref": "#/components/schemas/GrantedAuthority"
+        accountNonExpired:
+          type: boolean
+        accountNonLocked:
+          type: boolean
+        credentialsNonExpired:
+          type: boolean
+    LearningPath:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        typePath:
+          type: string
+    Course:
+      type: object
+      properties:
+        course_id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        category:
+          type: string
+        keywords:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        durationInWeeks:
+          type: integer
+          format: int64
+    RegistrationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        passwordCode:
+          type: integer
+          format: int64
+    Enrollment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user_id:
+          type: integer
+          format: int64
+        course_id:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+            - ENROLL
+            - UNENROLL
+    Tracking:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        grade:
+          type: string
+        average:
+          type: string
+    Quiz:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        course:
+          type: string
+        title:
+          type: string
+        questions:
+          type: string
+    Payment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        amount:
+          type: string
