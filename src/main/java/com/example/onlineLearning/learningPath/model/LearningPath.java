@@ -34,11 +34,4 @@ public class LearningPath {
         this.typePath = typePath;
     }
 
-    @Override
-    public String toString() {
-        return "LearningPath{" +
-                "id=" + id +
-                ", typePath='" + typePath + '\'' +
-                '}';
-    }
 }

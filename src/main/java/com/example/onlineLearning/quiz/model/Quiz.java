@@ -13,8 +13,10 @@ public class Quiz {
     private String course; //required
     private String title; //required
     private String questions;
-   // private List<Question> question;
 
+
+    public Quiz() {
+    }
 
     public Quiz(Long id, String course, String title, String questions) {
         this.id = id;

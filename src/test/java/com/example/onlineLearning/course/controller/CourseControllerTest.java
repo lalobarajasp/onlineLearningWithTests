@@ -12,20 +12,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 import org.springframework.http.MediaType;
+
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+
 
 @WebMvcTest(CourseController.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -62,7 +70,7 @@ public class CourseControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         String courseJson = objectMapper.writeValueAsString(validCourse);
 
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/course/create")
+        MvcResult result = mockMvc.perform(post("/course/create")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(courseJson))
                 .andExpect(status().isOk())
@@ -76,7 +84,38 @@ public class CourseControllerTest {
         assertEquals("Course is valid", responseContent);
     }
 
+    @Test
+    public void testCreateController_InvalidCourse_ReturnsBadRequest() throws Exception {
+        Course invalidCourse = new Course();
 
+        BindingResult mockBindingResult = Mockito.mock(BindingResult.class);
+        List<FieldError> errors = new ArrayList<>();
+        errors.add(new FieldError("course", "fieldName", "Field error message"));
+        Mockito.when(mockBindingResult.getFieldErrors()).thenReturn(errors);
+
+        mockMvc.perform(post("/course/create")
+                        .content(asJsonString(invalidCourse))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
+    // Helper method to convert objects to JSON format
+    private static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @WithMockUser(username = "admin", roles = "ADMIN")
+    public void testHandleValidationExceptions() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/course/create")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
 
 
     @Test
@@ -89,7 +128,7 @@ public class CourseControllerTest {
 
         when(courseService.getAllCourses()).thenReturn(courses);
 
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/course/courses"))
+        MvcResult result = mockMvc.perform(get("/course/courses"))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -124,7 +163,7 @@ public class CourseControllerTest {
         when(courseService.getOnlyCourse(courseId)).thenReturn(validCourse);
 
         // Perform the GET request
-        mockMvc.perform(MockMvcRequestBuilders.get("/course/courses/{courseId}", courseId))
+        mockMvc.perform(get("/course/courses/{courseId}", courseId))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.course_id").value(courseId))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Java"))
@@ -224,7 +263,7 @@ public class CourseControllerTest {
         when(courseService.searchCourses(Mockito.anyString())).thenReturn(courses);
 
         // Perform the GET request with the search term
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/course/search")
+        MvcResult result = mockMvc.perform(get("/course/search")
                         .param("search", searchTerm))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();

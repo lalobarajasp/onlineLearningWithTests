@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/quiz")
+@RequestMapping("/track")
 public class TrackingController {
     @Autowired
     private TrackingService trackingService;
 
-    @GetMapping (path="track/{trackId}")
+    @GetMapping (path="/track/{trackId}")
     public Tracking getTrack(@PathVariable("trackId")Long id) {
         return trackingService.getOnlyTrack(id);
     }

@@ -36,7 +36,7 @@ public class LearningPathServiceTest {
 
     @Test
     public void testCreateLearningPath() {
-        LearningPath learningPath = new LearningPath(/* initialize the object */);
+        LearningPath learningPath = new LearningPath();
         when(learningPathRepository.save(any(LearningPath.class))).thenReturn(learningPath);
 
         LearningPath createdPath = learningPathService.create(learningPath);
