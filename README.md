@@ -17,6 +17,9 @@ enter and select their own learning path through videos, documentation and exams
 }'
 ```
 
+## What should you find?
+- [x] :cloud: **API Design:** REST API with Model/View/Controller implementation and OpenAPI specification in > src -> main -> java/com/example/onlineLearning -> openAPI  and > v3 file. 
+
 ## How was it builded?
 The application was developed in SpringBoot, PostgreSQL and Spring Security
 
