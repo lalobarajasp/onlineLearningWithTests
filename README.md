@@ -18,10 +18,13 @@ enter and select their own learning path through videos, documentation and exams
 ```
 
 ## What should you find?
-- [x] :cloud: **API Design:** REST API with Model/View/Controller implementation and OpenAPI specification in <pre>src -> main -> java/com/example/onlineLearning -> openAPI</pre> and  ```v3``` file. 
+- [x] :page_facing_up: **API Design:** REST API with Model/View/Controller skeleton and OpenAPI specification in ```src -> main -> java/com/example/onlineLearning -> openAPI``` and ```v3``` folder.
+- [x] :cloud: **API implementation:** Model/View/Controller implementation and Service layer for business logic.
+- [x] :mag: **Validation and exception handling:** Protect the API application from wrong usage with ```spring-boot-starter-validation``` dependency.
+- [x] :closed_lock_with_key: **Security:** User security which is responsible to manage JWT tokens in ```src -> main -> java/com/example/onlineLearning -> user -> security``` folder.
+- [x] :warning: **Test and code quality:** Project covered with unit and integration tests at 80% and Jacoco plugin implementation.
 
 ## How was it builded?
-The application was developed in SpringBoot, PostgreSQL and Spring Security
-
+The application was developed in SpringBoot, PostgreSQL and Spring Security.
 
 
