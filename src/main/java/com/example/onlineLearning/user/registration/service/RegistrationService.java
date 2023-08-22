@@ -26,10 +26,7 @@ public class RegistrationService {
     private ConfirmationTokenService confirmationTokenService;
     private AppUserRepository appUserRepository;
     private  final EmailSender emailSender;
-
     private  final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
 
     public String register(RegistrationRequest registrationRequest) {
         boolean isValidEmail = emailValidator.test(registrationRequest.getEmail());
@@ -145,21 +142,16 @@ public class RegistrationService {
         return register;
     }
 
-    public AppUser forgotPassword(Long id, Long passwordCode, String newPassword){
+    public AppUser forgotPassword(Long id, Long passwordCode, String newPassword) {
         AppUser register = null;
-        if(appUserRepository.existsById(id)){
+        if (appUserRepository.existsById(id)) {
             register = appUserRepository.findById(id).get();
-            if (passwordCode != null) {
-                if (passwordCode.equals(register.getPasswordCode())) {
-                    String encodedPassword = bCryptPasswordEncoder.encode(register.getPassword());
-                    newPassword = encodedPassword;
-                    register.setPassword(newPassword);
-                    appUserRepository.save(register);
-                }
+            if (passwordCode != null && passwordCode.equals(register.getPasswordCode())) {
+                String encodedPassword = bCryptPasswordEncoder.encode(newPassword);
+                register.setPassword(encodedPassword);
+                appUserRepository.save(register);
             }
-            appUserRepository.save(register);
-
-        }else {
+        } else {
             System.out.println("Update | The register with the id: " + id + " doesn't exist.");
         }
         return register;
