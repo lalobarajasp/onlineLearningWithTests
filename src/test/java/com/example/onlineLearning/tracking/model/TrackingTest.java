@@ -1,6 +1,5 @@
 package com.example.onlineLearning.tracking.model;
 
-import com.example.onlineLearning.quiz.model.Quiz;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

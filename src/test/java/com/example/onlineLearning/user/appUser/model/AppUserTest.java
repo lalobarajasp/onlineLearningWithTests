@@ -1,13 +1,9 @@
 package com.example.onlineLearning.user.appUser.model;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.util.Collection;
 import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppUserTest {

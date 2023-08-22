@@ -2,8 +2,6 @@ package com.example.onlineLearning.payment.controller;
 
 import com.example.onlineLearning.payment.model.Payment;
 import com.example.onlineLearning.payment.service.PaymentService;
-import com.example.onlineLearning.quiz.model.Quiz;
-import com.example.onlineLearning.quiz.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

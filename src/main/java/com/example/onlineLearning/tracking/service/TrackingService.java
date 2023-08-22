@@ -1,12 +1,9 @@
 package com.example.onlineLearning.tracking.service;
 
-import com.example.onlineLearning.quiz.model.Quiz;
 import com.example.onlineLearning.tracking.model.Tracking;
 import com.example.onlineLearning.tracking.repository.TrackingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class TrackingService {

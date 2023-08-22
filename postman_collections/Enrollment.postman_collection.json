@@ -1,0 +1,25 @@
+{
+	"info": {
+		"_postman_id": "1c16bf90-2f32-4ab1-8f2f-25289d3fcd07",
+		"name": "Enrollment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Enroll Course",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Unenroll Course",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

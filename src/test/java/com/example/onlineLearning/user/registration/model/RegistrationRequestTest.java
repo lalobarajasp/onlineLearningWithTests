@@ -3,7 +3,6 @@ package com.example.onlineLearning.user.registration.model;
 import com.example.onlineLearning.user.appUser.model.AppUserRole;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RegistrationRequestTest {

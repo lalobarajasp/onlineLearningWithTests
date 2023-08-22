@@ -1,8 +1,5 @@
 package com.example.onlineLearning.quiz.controller;
 
-import com.example.onlineLearning.learningPath.controller.LearningPathController;
-import com.example.onlineLearning.learningPath.model.LearningPath;
-import com.example.onlineLearning.learningPath.service.LearningPathService;
 import com.example.onlineLearning.quiz.model.Quiz;
 import com.example.onlineLearning.quiz.service.QuizService;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,11 +13,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @WebMvcTest(QuizController.class)

@@ -1,7 +1,6 @@
 package com.example.onlineLearning.user.registration.service;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmailValidatorTest {

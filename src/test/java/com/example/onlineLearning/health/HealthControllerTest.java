@@ -16,9 +16,6 @@ class HealthControllerTest {
     @Autowired
     private HealthController healthController;
 
-    /**
-     * Method under test: {@link HealthController#healthCheck()}
-     */
     @Test
     void testHealthCheck() throws Exception {
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/health/health/app");
@@ -30,9 +27,6 @@ class HealthControllerTest {
                 .andExpect(MockMvcResultMatchers.content().string("UP"));
     }
 
-    /**
-     * Method under test: {@link HealthController#healthCheck()}
-     */
     @Test
     void testHealthCheck2() throws Exception {
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/health/health/app", "Uri Variables");

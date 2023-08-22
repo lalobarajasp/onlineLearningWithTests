@@ -1,0 +1,17 @@
+{
+	"info": {
+		"_postman_id": "3f842cc3-3072-4889-afa1-1f223f194a78",
+		"name": "Helath",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "App is up",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

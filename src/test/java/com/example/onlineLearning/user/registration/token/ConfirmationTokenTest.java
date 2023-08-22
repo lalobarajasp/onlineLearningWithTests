@@ -2,9 +2,7 @@ package com.example.onlineLearning.user.registration.token;
 
 import com.example.onlineLearning.user.appUser.model.AppUser;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ConfirmationTokenTest {

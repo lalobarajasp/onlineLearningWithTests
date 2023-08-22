@@ -1,8 +1,6 @@
 package com.example.onlineLearning.payment.model;
 
-import com.example.onlineLearning.learningPath.model.LearningPath;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentTest {

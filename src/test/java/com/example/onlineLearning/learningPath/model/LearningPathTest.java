@@ -1,9 +1,6 @@
 package com.example.onlineLearning.learningPath.model;
 
-import com.example.onlineLearning.enrollment.model.Enrollment;
-import com.example.onlineLearning.enrollment.model.Status;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LearningPathTest {

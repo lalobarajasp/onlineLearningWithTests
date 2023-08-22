@@ -1,6 +1,5 @@
 package com.example.onlineLearning.quiz.model;
 
-import com.example.onlineLearning.payment.model.Payment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

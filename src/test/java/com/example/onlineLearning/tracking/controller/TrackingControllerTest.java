@@ -1,8 +1,5 @@
 package com.example.onlineLearning.tracking.controller;
 
-import com.example.onlineLearning.quiz.controller.QuizController;
-import com.example.onlineLearning.quiz.model.Quiz;
-import com.example.onlineLearning.quiz.service.QuizService;
 import com.example.onlineLearning.tracking.model.Tracking;
 import com.example.onlineLearning.tracking.service.TrackingService;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,8 +13,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @WebMvcTest(TrackingController.class)

@@ -1,10 +1,7 @@
 package com.example.onlineLearning.user.registration.controller;
 
-import com.example.onlineLearning.quiz.model.Quiz;
-import com.example.onlineLearning.tracking.controller.TrackingController;
 import com.example.onlineLearning.user.appUser.model.AppUser;
 import com.example.onlineLearning.user.appUser.model.AppUserRole;
-import com.example.onlineLearning.user.appUser.model.ChangePassword;
 import com.example.onlineLearning.user.registration.model.RegistrationRequest;
 import com.example.onlineLearning.user.registration.service.RegistrationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,11 +17,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

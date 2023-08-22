@@ -1,6 +1,5 @@
 package com.example.onlineLearning.user.registration.service;
 
-import com.example.onlineLearning.course.model.Course;
 import com.example.onlineLearning.user.appUser.model.AppUser;
 import com.example.onlineLearning.user.appUser.model.AppUserRole;
 import com.example.onlineLearning.user.appUser.repository.AppUserRepository;

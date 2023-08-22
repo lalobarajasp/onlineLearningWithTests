@@ -1,8 +1,6 @@
 package com.example.onlineLearning.user.appUser.model;
 
-import com.example.onlineLearning.enrollment.model.Status;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppUserRoleTest {

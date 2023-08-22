@@ -4,7 +4,6 @@ import com.example.onlineLearning.course.model.Course;
 import com.example.onlineLearning.course.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +53,6 @@ public class CourseService {
 
 
     //Delete Course
-
     public Course deleteCourse(Long course_id) {
         Course tmpCourse = null;
         if (courseRepository.existsById(course_id)) {
@@ -65,7 +63,6 @@ public class CourseService {
     }
 
     //Search Course by title, category and keywords
-
     public List<Course> searchCourses(String search) {
         List<Course> coursesByTitle = courseRepository.findByTitleContainingIgnoreCase(search);
         List<Course> coursesByCategory = courseRepository.findByCategoryContainingIgnoreCase(search);

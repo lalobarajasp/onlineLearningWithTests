@@ -1,15 +1,7 @@
 package com.example.onlineLearning.course.model;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.List;
 import java.util.*;
-
 
 @Entity
 @Table(name = "course")
@@ -37,7 +29,6 @@ public class Course {
         this.startDate = startDate;
         this.endDate = endDate;
         this.durationInWeeks = durationInWeeks;
-//        this.enrolledUsers = enrolledUsers;
     }
 
     public Long getCourse_id() {

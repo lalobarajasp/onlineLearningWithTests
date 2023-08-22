@@ -1,15 +1,10 @@
 package com.example.onlineLearning.learningPath.controller;
 
-import com.example.onlineLearning.enrollment.model.Enrollment;
-import com.example.onlineLearning.enrollment.service.EnrollmentService;
 import com.example.onlineLearning.learningPath.model.LearningPath;
 
 import com.example.onlineLearning.learningPath.service.LearningPathService;
-import com.example.onlineLearning.payment.controller.PaymentController;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

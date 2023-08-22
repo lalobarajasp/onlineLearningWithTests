@@ -13,9 +13,6 @@ import com.example.onlineLearning.enrollment.repository.EnrollmentRepository;
 import com.example.onlineLearning.user.appUser.repository.AppUserRepository;
 
 import java.util.Optional;
-
-import org.junit.jupiter.api.Disabled;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -41,9 +38,6 @@ class EnrollmentServiceTest {
     @Autowired
     private EnrollmentService enrollmentService;
 
-    /**
-     * Method under test: {@link EnrollmentService#enrollCourse(Enrollment)}
-     */
     @Test
     void testEnrollCourse() {
         when(appUserRepository.existsById(Mockito.<Long>any())).thenReturn(true);
@@ -69,9 +63,6 @@ class EnrollmentServiceTest {
         verify(enrollmentRepository).save(Mockito.<Enrollment>any());
     }
 
-    /**
-     * Method under test: {@link EnrollmentService#enrollCourse(Enrollment)}
-     */
     @Test
     void testEnrollCourse2() {
         when(appUserRepository.existsById(Mockito.<Long>any())).thenReturn(false);
@@ -86,9 +77,6 @@ class EnrollmentServiceTest {
         verify(appUserRepository).existsById(Mockito.<Long>any());
     }
 
-    /**
-     * Method under test: {@link EnrollmentService#enrollCourse(Enrollment)}
-     */
     @Test
     void testEnrollCourse3() {
         when(appUserRepository.existsById(Mockito.<Long>any())).thenReturn(true);
@@ -104,9 +92,6 @@ class EnrollmentServiceTest {
         verify(courseRepository).existsById(Mockito.<Long>any());
     }
 
-    /**
-     * Method under test: {@link EnrollmentService#unEnrollCourse(Long)}
-     */
     @Test
     void testUnEnrollCourse() {
         Enrollment enrollment = new Enrollment();
@@ -132,9 +117,6 @@ class EnrollmentServiceTest {
         verify(enrollmentRepository).findById(Mockito.<Long>any());
     }
 
-    /**
-     * Method under test: {@link EnrollmentService#unEnrollCourse(Long)}
-     */
     @Test
     void testUnEnrollCourse3() {
         when(enrollmentRepository.existsById(Mockito.<Long>any())).thenReturn(false);

@@ -1,6 +1,5 @@
 package com.example.onlineLearning.user.registration.model;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

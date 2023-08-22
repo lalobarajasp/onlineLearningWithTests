@@ -1,7 +1,6 @@
 package com.example.onlineLearning.enrollment.repository;
 import com.example.onlineLearning.enrollment.model.Enrollment;
 import com.example.onlineLearning.enrollment.model.Status;
-import com.example.onlineLearning.enrollment.repository.EnrollmentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

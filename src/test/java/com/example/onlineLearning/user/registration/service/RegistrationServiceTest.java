@@ -4,9 +4,6 @@ import com.example.onlineLearning.user.appUser.model.AppUserRole;
 import com.example.onlineLearning.user.appUser.repository.AppUserRepository;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.onlineLearning.user.appUser.service.AppUserService;
 import com.example.onlineLearning.user.email.EmailSender;
 import com.example.onlineLearning.user.registration.model.RegistrationRequest;
@@ -25,7 +22,6 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;

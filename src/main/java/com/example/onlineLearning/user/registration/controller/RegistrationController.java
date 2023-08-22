@@ -1,21 +1,13 @@
 package com.example.onlineLearning.user.registration.controller;
 
-import com.example.onlineLearning.course.model.Course;
 import com.example.onlineLearning.user.appUser.model.AppUser;
 import com.example.onlineLearning.user.appUser.model.ChangePassword;
 import com.example.onlineLearning.user.registration.model.RegistrationRequest;
 import com.example.onlineLearning.user.registration.service.RegistrationService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/registration")
