@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CourseService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">onlineLearning</a> &gt; <a href="index.source.html" class="el_package">com.example.onlineLearning.course.service</a> &gt; <span class="el_source">CourseService.java</span></div><h1>CourseService.java</h1><pre class="source lang-java linenums">package com.example.onlineLearning.course.service;
+
+import com.example.onlineLearning.course.model.Course;
+import com.example.onlineLearning.course.repository.CourseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+<span class="fc" id="L11">public class CourseService {</span>
+    @Autowired
+    private CourseRepository courseRepository;
+
+    //Create Course
+
+    public Course create(Course course) {
+<span class="fc" id="L18">        return courseRepository.save(course);</span>
+    }
+
+    //Retrieve all Courses
+
+    public List&lt;Course&gt; getAllCourses() {
+<span class="fc" id="L24">        return courseRepository.findAll();</span>
+    }
+
+    //Retrieve Only a Course
+
+    public Course getOnlyCourse(Long course_id) {
+<span class="fc" id="L30">        return courseRepository.findById(course_id).orElseThrow(</span>
+<span class="fc" id="L31">                () -&gt; new IllegalStateException(&quot;The course with id: &quot; + course_id + &quot; doesn't exist.&quot;)</span>
+        );
+    }
+
+    //Update Course
+
+    public Course updateCourse(Long course_id, Course updatedCourse) {
+<span class="fc" id="L38">        Course existingCourse = null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if(courseRepository.existsById(course_id)) {</span>
+<span class="fc" id="L40">            existingCourse = courseRepository.findById(course_id).get();</span>
+<span class="fc" id="L41">            existingCourse.setTitle(updatedCourse.getTitle());</span>
+<span class="fc" id="L42">            existingCourse.setCategory(updatedCourse.getCategory());</span>
+<span class="fc" id="L43">            existingCourse.setKeywords(updatedCourse.getKeywords());</span>
+<span class="fc" id="L44">            existingCourse.setStartDate(updatedCourse.getStartDate());</span>
+<span class="fc" id="L45">            existingCourse.setEndDate(updatedCourse.getEndDate());</span>
+<span class="fc" id="L46">            existingCourse.setDurationInWeeks(updatedCourse.getDurationInWeeks());</span>
+<span class="fc" id="L47">            courseRepository.save(existingCourse);</span>
+        }else {
+<span class="fc" id="L49">            System.out.println(&quot;Update | The course with the id: &quot; + course_id + &quot; doesn't exist.&quot;);</span>
+        }
+<span class="fc" id="L51">        return existingCourse;</span>
+    }
+
+
+    //Delete Course
+    public Course deleteCourse(Long course_id) {
+<span class="fc" id="L57">        Course tmpCourse = null;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (courseRepository.existsById(course_id)) {</span>
+<span class="fc" id="L59">            tmpCourse = courseRepository.findById(course_id).get();</span>
+<span class="fc" id="L60">            courseRepository.deleteById(course_id);</span>
+        }
+<span class="fc" id="L62">        return tmpCourse;</span>
+    }
+
+    //Search Course by title, category and keywords
+    public List&lt;Course&gt; searchCourses(String search) {
+<span class="fc" id="L67">        List&lt;Course&gt; coursesByTitle = courseRepository.findByTitleContainingIgnoreCase(search);</span>
+<span class="fc" id="L68">        List&lt;Course&gt; coursesByCategory = courseRepository.findByCategoryContainingIgnoreCase(search);</span>
+<span class="fc" id="L69">        List&lt;Course&gt; coursesByKeyword = courseRepository.findByKeywordsContainingIgnoreCase(search);</span>
+
+<span class="fc" id="L71">        List&lt;Course&gt; searchResults = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L72">        searchResults.addAll(coursesByTitle);</span>
+<span class="fc" id="L73">        searchResults.addAll(coursesByCategory);</span>
+<span class="fc" id="L74">        searchResults.addAll(coursesByKeyword);</span>
+
+<span class="fc" id="L76">        return searchResults;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AppUserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">onlineLearning</a> &gt; <a href="index.source.html" class="el_package">com.example.onlineLearning.user.appUser.service</a> &gt; <span class="el_source">AppUserService.java</span></div><h1>AppUserService.java</h1><pre class="source lang-java linenums">package com.example.onlineLearning.user.appUser.service;
+
+import com.example.onlineLearning.user.appUser.model.AppUser;
+import com.example.onlineLearning.user.appUser.repository.AppUserRepository;
+import com.example.onlineLearning.user.registration.token.ConfirmationToken;
+import com.example.onlineLearning.user.registration.token.ConfirmationTokenService;
+import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Service
+<span class="fc" id="L17">@AllArgsConstructor</span>
+public class AppUserService implements UserDetailsService {
+    private final static String USER_NOT_FOUND = &quot;user with email %s not found&quot;;
+    private  final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AppUserRepository appUserRepository;
+    private final ConfirmationTokenService confirmationTokenService;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+<span class="fc" id="L26">        return appUserRepository.findByEmail(email).orElseThrow(() -&gt; new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));</span>
+    }
+
+    public String singUpUser(AppUser appUser){
+<span class="fc" id="L30">        boolean userExists = appUserRepository.findByEmail(appUser.getEmail()).isPresent();</span>
+
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if(userExists){</span>
+<span class="fc" id="L33">            throw new IllegalStateException(&quot;email already taken&quot;);</span>
+        }
+<span class="fc" id="L35">        String encodedPassword =  bCryptPasswordEncoder.encode(appUser.getPassword());</span>
+
+<span class="fc" id="L37">        appUser.setPassword(encodedPassword);</span>
+<span class="fc" id="L38">        appUserRepository.save(appUser);</span>
+
+
+<span class="fc" id="L41">        String token = UUID.randomUUID().toString();</span>
+        //TODO: Send confirmation token
+<span class="fc" id="L43">        ConfirmationToken confirmationToken = new ConfirmationToken(</span>
+                token,
+<span class="fc" id="L45">                LocalDateTime.now(),</span>
+<span class="fc" id="L46">                LocalDateTime.now().plusMinutes(15),</span>
+                appUser
+        );
+
+<span class="fc" id="L50">        confirmationTokenService.saveConfirmationToken(confirmationToken);</span>
+        //TODO : SEND EMAIL
+
+<span class="fc" id="L53">        return token;</span>
+    }
+
+    public int enableAppUser(String email) {
+<span class="fc" id="L57">        return appUserRepository.enableAppUser(email);</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
